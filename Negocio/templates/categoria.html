@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ categoria }} | NEGOCIO</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .carrito {
+            background: #d4af37;
+            color: #111;
+            padding: 10px 18px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .titulo {
+            text-align: center;
+            padding: 70px 20px 40px;
+        }
+
+        .titulo h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #777;
+            font-size: 18px;
+        }
+
+        .productos {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 30px 80px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        }
+
+        .producto-imagen {
+            height: 250px;
+            background: #ddd;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 100px;
+        }
+
+        .producto-info {
+            padding: 25px;
+        }
+
+        .producto-info h2 {
+            margin-bottom: 10px;
+        }
+
+        .producto-info p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .precio {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .comprar {
+            display: block;
+            text-align: center;
+
+            background: #111;
+            color: white;
+
+            padding: 13px;
+            border-radius: 25px;
+
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .comprar:hover {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .volver {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 50px;
+
+            color: #111;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media(max-width:850px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .productos {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        NEGOCIO<span>®</span>
+    </div>
+
+    <nav>
+
+        <a href="/">Inicio</a>
+
+        <a href="/categoria/ropa">
+            Ropa
+        </a>
+
+        <a href="/categoria/lociones">
+            Lociones
+        </a>
+
+        <a href="/categoria/gorras">
+            Gorras
+        </a>
+
+    </nav>
+
+    <a href="/carrito" class="carrito">
+        🛒 Carrito
+    </a>
+
+</header>
+
+
+<div class="titulo">
+
+    <h1>{{ categoria }}</h1>
+
+    <p>
+        Descubre todos nuestros productos disponibles.
+    </p>
+
+</div>
+
+
+<div class="productos">
+
+    {% for producto in productos %}
+
+    <div class="producto">
+
+        <div class="producto-imagen">
+
+            {{ producto.icono }}
+
+        </div>
+
+        <div class="producto-info">
+
+            <h2>
+                {{ producto.nombre }}
+            </h2>
+
+            <p>
+                {{ producto.descripcion }}
+            </p>
+
+            <div class="precio">
+
+                ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
+
+            </div>
+
+            <a
+                href="/agregar/{{ producto.id }}"
+                class="comprar">
+
+                🛒 Comprar
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<a href="/" class="volver">
+    ← Volver al inicio
+</a>
+
+
+</body>
+
+</html>

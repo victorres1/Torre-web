@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TORRE | Ropa & Accesorios</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #f5f5f5;
+
+            color: #111;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            background: #0b0b0b;
+
+            color: white;
+
+            padding: 14px 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 5px 25px rgba(0,0,0,.35);
+
+        }
+
+
+        /* LOGO */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .logo img {
+
+            width: 175px;
+
+            height: auto;
+
+            display: block;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================
+           NAV
+        ========================= */
+
+        nav {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 35px;
+
+        }
+
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 16px;
+
+            transition: .3s;
+
+        }
+
+
+        nav a:hover {
+
+            color: #d4af37;
+
+        }
+
+
+        /* =========================
+           BOTÓN COMPRAR
+        ========================= */
+
+        .carrito {
+
+            background: #d4af37;
+
+            color: #111;
+
+            padding: 13px 24px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: .3s;
+
+            white-space: nowrap;
+
+        }
+
+
+        .carrito:hover {
+
+            background: #f1d77a;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            min-height: 600px;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.92) 0%,
+                    rgba(0,0,0,.72) 40%,
+                    rgba(0,0,0,.15) 100%
+                ),
+
+                url("{{ url_for('static', filename='tienda.png') }}");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: white;
+
+        }
+
+
+        .hero-text {
+
+            width: 55%;
+
+            padding: 80px 0 80px 8%;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .hero-text small {
+
+            color: #d4af37;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .hero h1 {
+
+            font-size: 65px;
+
+            line-height: 1.05;
+
+            margin: 22px 0;
+
+        }
+
+
+        .hero h1 span {
+
+            color: #d4af37;
+
+        }
+
+
+        .hero p {
+
+            max-width: 570px;
+
+            font-size: 20px;
+
+            line-height: 1.6;
+
+            color: #eee;
+
+            margin-bottom: 32px;
+
+        }
+
+
+        /* =========================
+           BOTONES
+        ========================= */
+
+        .boton {
+
+            display: inline-block;
+
+            padding: 15px 28px;
+
+            background: #d4af37;
+
+            color: #111;
+
+            text-decoration: none;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            transition: .3s;
+
+        }
+
+
+        .boton:hover {
+
+            background: #f1d77a;
+
+            transform: translateY(-3px);
+
+        }
+
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        section {
+
+            padding: 80px 8%;
+
+        }
+
+
+        .titulo {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+
+        }
+
+
+        .titulo h2 {
+
+            font-size: 40px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .titulo p {
+
+            color: #777;
+
+            font-size: 18px;
+
+        }
+
+
+        /* =========================
+           CATEGORÍAS
+        ========================= */
+
+        #categorias {
+
+            background: #f7f7f7;
+
+        }
+
+
+        .categorias {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .categoria {
+
+            background: #111;
+
+            color: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            min-height: 400px;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.15);
+
+            transition: .3s;
+
+        }
+
+
+        .categoria:hover {
+
+            transform: translateY(-8px);
+
+        }
+
+
+        /* IMAGEN DE ROPA */
+
+        .categoria.ropa {
+
+            background:
+
+                linear-gradient(
+                    0deg,
+                    rgba(0,0,0,.9),
+                    rgba(0,0,0,.05)
+                ),
+
+                url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+        }
+
+
+        /* IMAGEN DE LOCIONES */
+
+        .categoria.lociones {
+
+            background:
+
+                linear-gradient(
+                    0deg,
+                    rgba(0,0,0,.9),
+                    rgba(0,0,0,.05)
+                ),
+
+                url("https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+        }
+
+
+        /* IMAGEN DE GORRAS */
+
+        .categoria.gorras {
+
+            background:
+
+                linear-gradient(
+                    0deg,
+                    rgba(0,0,0,.9),
+                    rgba(0,0,0,.05)
+                ),
+
+                url("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+        }
+
+
+        .categoria-contenido {
+
+            padding: 30px;
+
+            width: 100%;
+
+        }
+
+
+        .categoria h3 {
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .categoria p {
+
+            color: #eee;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+
+            max-width: 320px;
+
+        }
+
+
+        /* =========================
+           PRODUCTOS
+        ========================= */
+
+        #productos {
+
+            background: #eeeeee;
+
+        }
+
+
+        .productos {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .producto {
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.08);
+
+            transition: .3s;
+
+        }
+
+
+        .producto:hover {
+
+            transform: translateY(-7px);
+
+        }
+
+
+        .producto-imagen {
+
+            height: 280px;
+
+            background: #ddd;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+
+        }
+
+
+        .producto-imagen img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .producto-info {
+
+            padding: 22px;
+
+        }
+
+
+        .producto-info h3 {
+
+            font-size: 22px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .producto-info p {
+
+            color: #777;
+
+            line-height: 1.5;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .precio {
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .comprar {
+
+            display: block;
+
+            text-align: center;
+
+            background: #111;
+
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 25px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: .3s;
+
+        }
+
+
+        .comprar:hover {
+
+            background: #d4af37;
+
+            color: #111;
+
+        }
+
+
+        /* =========================
+           OFERTA
+        ========================= */
+
+        .oferta {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #080808,
+                    #292929
+                );
+
+            color: white;
+
+            text-align: center;
+
+        }
+
+
+        .oferta h2 {
+
+            font-size: 42px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .oferta p {
+
+            font-size: 20px;
+
+            color: #ddd;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================
+           CONTACTO
+        ========================= */
+
+        .contacto {
+
+            background: #f5f5f5;
+
+            text-align: center;
+
+        }
+
+
+        .contacto-box {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 45px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.08);
+
+        }
+
+
+        .contacto-box h2 {
+
+            font-size: 35px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .contacto-box p {
+
+            color: #777;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #0b0b0b;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+        }
+
+
+        footer .logo {
+
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        footer .logo img {
+
+            width: 150px;
+
+        }
+
+
+        footer p {
+
+            color: #aaa;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            header {
+
+                flex-direction: column;
+
+                padding: 18px 5%;
+
+            }
+
+
+            nav {
+
+                flex-wrap: wrap;
+
+                gap: 18px;
+
+            }
+
+
+            .hero {
+
+                min-height: 650px;
+
+            }
+
+
+            .hero-text {
+
+                width: 100%;
+
+                text-align: center;
+
+                padding: 80px 7%;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 48px;
+
+            }
+
+
+            .hero p {
+
+                margin-left: auto;
+
+                margin-right: auto;
+
+            }
+
+
+            .categorias,
+            .productos {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .logo img {
+
+                width: 145px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 40px;
+
+            }
+
+
+            .hero-text small {
+
+                font-size: 15px;
+
+            }
+
+
+            .titulo h2 {
+
+                font-size: 32px;
+
+            }
+
+
+            section {
+
+                padding: 60px 5%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for('static', filename='logo.png') }}"
+            alt="TORRES Ropa y Accesorios">
+
+    </div>
+
+
+    <nav>
+
+        <a href="/">
+            Inicio
+        </a>
+
+        <a href="#categorias">
+            Categorías
+        </a>
+
+        <a href="#productos">
+            Productos
+        </a>
+
+        <a href="#contacto">
+            Contacto
+        </a>
+
+    </nav>
+
+
+    <a
+        href="/carrito"
+        class="carrito">
+
+        🛒 Comprar
+
+    </a>
+
+
+</header>
+
+
+
+<!-- =========================
+     PORTADA
+========================= -->
+
+<section
+    class="hero"
+    id="inicio">
+
+
+    <div class="hero-text">
+
+
+        <small>
+            ✦ NUEVA COLECCIÓN
+        </small>
+
+
+        <h1>
+
+            Tu estilo.
+            <br>
+
+            <span>Tu esencia.</span>
+
+        </h1>
+
+
+        <p>
+
+            Descubre nuestra colección
+            de ropa, lociones y gorras
+            para complementar tu estilo
+            todos los días.
+
+        </p>
+
+
+        <a
+            href="#productos"
+            class="boton">
+
+            🛍️ Ver productos
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     CATEGORÍAS
+========================= -->
+
+<section id="categorias">
+
+
+    <div class="titulo">
+
+        <h2>
+            Compra por categoría
+        </h2>
+
+        <p>
+            Encuentra lo que buscas
+            de manera rápida.
+        </p>
+
+    </div>
+
+
+    <div class="categorias">
+
+
+        <!-- ROPA -->
+
+        <div class="categoria ropa">
+
+
+            <div class="categoria-contenido">
+
+
+                <h3>
+                    Ropa
+                </h3>
+
+
+                <p>
+
+                    Camisetas, conjuntos
+                    y prendas para todos
+                    los estilos.
+
+                </p>
+
+
+                <a
+                    href="/categoria/ropa"
+                    class="boton">
+
+                    Ver ropa →
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- LOCIONES -->
+
+        <div class="categoria lociones">
+
+
+            <div class="categoria-contenido">
+
+
+                <h3>
+                    Lociones
+                </h3>
+
+
+                <p>
+
+                    Fragancias para
+                    complementar tu
+                    personalidad.
+
+                </p>
+
+
+                <a
+                    href="/categoria/lociones"
+                    class="boton">
+
+                    Ver lociones →
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- GORRAS -->
+
+        <div class="categoria gorras">
+
+
+            <div class="categoria-contenido">
+
+
+                <h3>
+                    Gorras
+                </h3>
+
+
+                <p>
+
+                    Diseños modernos
+                    para completar
+                    tu outfit.
+
+                </p>
+
+
+                <a
+                    href="/categoria/gorras"
+                    class="boton">
+
+                    Ver gorras →
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     PRODUCTOS
+========================= -->
+
+<section id="productos">
+
+
+    <div class="titulo">
+
+        <h2>
+            Productos destacados
+        </h2>
+
+        <p>
+            Descubre algunos de
+            nuestros productos.
+        </p>
+
+    </div>
+
+
+    <div class="productos">
+
+
+        <!-- CAMISETA -->
+
+        <div class="producto">
+
+
+            <div class="producto-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85"
+                    alt="Camiseta">
+
+            </div>
+
+
+            <div class="producto-info">
+
+                <h3>
+                    Camiseta Premium
+                </h3>
+
+                <p>
+                    Camiseta moderna
+                    y cómoda.
+                </p>
+
+                <div class="precio">
+                    $59.900
+                </div>
+
+                <a
+                    href="/agregar/1"
+                    class="comprar">
+
+                    🛒 Comprar
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- LOCIÓN -->
+
+        <div class="producto">
+
+
+            <div class="producto-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85"
+                    alt="Loción">
+
+            </div>
+
+
+            <div class="producto-info">
+
+                <h3>
+                    Loción Premium
+                </h3>
+
+                <p>
+                    Fragancia elegante
+                    y duradera.
+                </p>
+
+                <div class="precio">
+                    $89.900
+                </div>
+
+                <a
+                    href="/agregar/3"
+                    class="comprar">
+
+                    🛒 Comprar
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- GORRA -->
+
+        <div class="producto">
+
+
+            <div class="producto-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=85"
+                    alt="Gorra">
+
+            </div>
+
+
+            <div class="producto-info">
+
+                <h3>
+                    Gorra Urbana
+                </h3>
+
+                <p>
+                    Diseño moderno
+                    y versátil.
+                </p>
+
+                <div class="precio">
+                    $39.900
+                </div>
+
+                <a
+                    href="/agregar/5"
+                    class="comprar">
+
+                    🛒 Comprar
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- CAMISA -->
+
+        <div class="producto">
+
+
+            <div class="producto-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=900&q=85"
+                    alt="Camisa">
+
+            </div>
+
+
+            <div class="producto-info">
+
+                <h3>
+                    Camisa Casual
+                </h3>
+
+                <p>
+                    Ideal para un
+                    estilo elegante.
+                </p>
+
+                <div class="precio">
+                    $79.900
+                </div>
+
+                <a
+                    href="/agregar/2"
+                    class="comprar">
+
+                    🛒 Comprar
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- LOCIÓN FEMENINA -->
+
+        <div class="producto">
+
+
+            <div class="producto-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85"
+                    alt="Perfume">
+
+            </div>
+
+
+            <div class="producto-info">
+
+                <h3>
+                    Loción Femenina
+                </h3>
+
+                <p>
+                    Aroma fresco
+                    y sofisticado.
+                </p>
+
+                <div class="precio">
+                    $99.900
+                </div>
+
+                <a
+                    href="/agregar/4"
+                    class="comprar">
+
+                    🛒 Comprar
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- GORRA PREMIUM -->
+
+        <div class="producto">
+
+
+            <div class="producto-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85"
+                    alt="Gorra Premium">
+
+            </div>
+
+
+            <div class="producto-info">
+
+                <h3>
+                    Gorra Premium
+                </h3>
+
+                <p>
+                    Diseño exclusivo
+                    para tu estilo.
+                </p>
+
+                <div class="precio">
+                    $49.900
+                </div>
+
+                <a
+                    href="/agregar/6"
+                    class="comprar">
+
+                    🛒 Comprar
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     OFERTA
+========================= -->
+
+<section class="oferta">
+
+
+    <h2>
+        🔥 Oferta especial
+    </h2>
+
+
+    <p>
+
+        Renueva tu estilo con
+        nuestros productos seleccionados.
+
+    </p>
+
+
+    <a
+        href="#productos"
+        class="boton">
+
+        Comprar ahora
+
+    </a>
+
+
+</section>
+
+
+
+<!-- =========================
+     CONTACTO
+========================= -->
+
+<section
+    class="contacto"
+    id="contacto">
+
+
+    <div class="contacto-box">
+
+
+        <h2>
+            📞 Contáctanos
+        </h2>
+
+
+        <p>
+
+            ¿Quieres conocer nuestros
+            productos, precios o
+            disponibilidad?
+
+            <br><br>
+
+            Escríbenos y te atenderemos.
+
+        </p>
+
+
+        <a
+            href="mailto:contacto@torres.com"
+            class="boton">
+
+            📩 Enviar mensaje
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for('static', filename='logo.png') }}"
+            alt="TORRES">
+
+    </div>
+
+
+    <p>
+        Ropa · Lociones · Gorras
+    </p>
+
+
+    <br>
+
+
+    <p>
+        © 2026 TORRE.
+        Todos los derechos reservados.
+    </p>
+
+
+</footer>
+
+
+</body>
+
+</html>
